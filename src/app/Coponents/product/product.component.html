@@ -1,0 +1,90 @@
+
+<!--<div class="box">
+    <h1>{{product.title}}</h1>
+    <div>
+    <img src="{{product.thumbnail}}" class="card-img-top" width="200px" height="200px" >
+    </div>
+    <h2>{{product.description}}</h2>
+    <h2 class="price">{{product.price}}Dhs</h2>
+
+    <div style="margin-right: 10px">
+      <button class="btn" (click)="showForm()" >
+        Add to cart
+      </button>
+    </div>
+
+  <form *ngIf="showFormFlag" style="margin: auto" class="form-group">
+    <label for="quantity" class="form-control-label">Quantity:</label><br />
+    <input
+      type="number"
+      id="quantity"
+      name="quantity"
+      class="form-control"
+      #quantityInput #required
+    /><br />
+    <button
+      type="submit"
+      (click)="addTocart(quantityInput.value)"
+      style="margin: 5%; margin-left: auto"
+      class="btn btn-primary"
+    >
+      Submit
+    </button>
+  </form>
+    &lt;!&ndash;<button  [ngStyle]="{'background-color': product?.disponibilite === true ? 'Green' : 'Red'}"  type="button" (click)="onSelect()">Add to cart </button>&ndash;&gt;
+   <div>
+     <a [routerLink]="['/product-detail', product.id]" [state]="product"
+     style="cursor: hand" class="btn">read more</a>
+    </div>
+
+</div>-->
+
+<div class="card h-100" style="margin-top: 120px" *ngIf="product">
+  <!-- Product image-->
+  <img class="card-img-top" width="200px" height="300px" src="{{product.thumbnail}}" alt="..."
+       routerLink="/detail/{{product.id}}"/>
+  <!-- Product details-->
+  <div class="card-body p-4">
+    <div class="text-center">
+      <!-- Product name-->
+      <h5 class="fw-bolder">{{product.title}}</h5>
+      <h6>{{product.description}}</h6>
+      <!-- Product price-->
+      <h4>${{product.price}}</h4>
+    </div>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-4">
+        <button class="btn btn-outline-dark mt-auto " (click)="showForm()">
+          <h4>Add to cart</h4>
+        </button>
+      </div>
+      <div class="col-2"></div>
+      <div class="col-4">
+        <button routerLink="/product-detail/{{product.id}}" style="cursor: hand"
+                class="btn btn-outline-dark mt-auto">
+          <h4>Read more</h4>
+        </button>
+      </div>
+      <div class="col-1"></div>
+    </div>
+    <form *ngIf="showFormFlag" style="margin: auto" class="">
+      <div class="form-group">
+        <label for="quantity" class="form-control-label">Quantity:</label><br />
+        <input type="number" id="quantity" name="quantity" class="form-control" #quantityInput #required/>
+      </div>
+      <div class="form-group">
+        <button
+          type="submit"
+          (click)="addTocart(quantityInput.value)"
+          style="margin: 5%; margin-left: auto"
+          class="btn btn-outline-dark">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+

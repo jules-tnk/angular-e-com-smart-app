@@ -1,0 +1,60 @@
+<section class="py-5" *ngIf="product">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="row gx-4 gx-lg-5 align-items-center">
+      <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{product.thumbnail}}" alt="img"/></div>
+      <div class="col-md-6">
+        <!--<div class="small mb-1">SKU: BST-498</div>-->
+        <h1 class="display-5 fw-bolder">{{product.title}}</h1>
+        <div class="fs-5 mb-5">
+          <span>MAD 40.00</span>
+        </div>
+        <p class="lead">
+          {{product.description}}
+        </p>
+        <div class="d-flex">
+          <button class="btn btn-outline-dark flex-shrink-0" type="button">
+            <h4>Add to cart</h4>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--
+<section class="features" id="features">
+  <h1 class="heading">The <span>product</span> </h1>
+  <div class="box-container">
+    <div  class="box" >
+        <h1>{{product.title}}</h1>
+        <img  src="{{product.thumbnail}}" class="card-img-top" width="200px" height="200px"/>
+        <h2>{{product.description}}</h2>
+        <h2 class="price">{{product.price}}   Dhs</h2>
+        <div style="margin-right: 10px">
+          <button class="btn btn-outline-dark" (click)="showForm()">
+            Add to cart
+          </button>
+        </div>
+    <form  *ngIf="showFormFlag" style="margin: auto" class="form-group">
+  <label for="quantity" class="form-control-label">Quantity:</label><br />
+  <input
+    type="number"
+    id="quantity"
+    name="quantity"
+    class="form-control"
+    #quantityInput
+  ><br />
+    <button
+      type="submit"
+      (click)="addToCart(quantityInput.value)"
+      style="margin: 5%; margin-left: auto"
+      class="btn btn-primary"
+    >
+      Submit
+    </button>
+</form>
+
+    </div>
+  </div>
+</section>
+-->
+
