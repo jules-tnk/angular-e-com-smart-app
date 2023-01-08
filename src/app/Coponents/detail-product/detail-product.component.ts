@@ -18,11 +18,17 @@ export class DetailProductComponent implements OnInit{
               private cartService: CartService){}
 
     ngOnInit(): void {
-      //this.product = history.state;
-      const id:number= this.route.snapshot.params['id'];
-      this.product=this.productService.getProductById(Number(id));
-      //this.product = history.state;
+    this.getProduct();
     }
+
+
+    getProduct(){
+      const id:number= this.route.snapshot.params['id'];
+      this.productService.getProductById(Number(id)).subscribe(
+        product => this.product = product
+      );
+    }
+
     showForm(){
       this.showFormFlag=true;
     }

@@ -13,19 +13,19 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class CartComponent {
   panier?:PanierItem[];
 
-  constructor(private panierService: CartService, private productService:ProductService) {
+  constructor(private panierService: CartService, private productService:ProductService) {}
 
-  }
   ngOnInit(): void {
-
-    this.panier=this.panierService.getCart() ;
-    console.log(this.panier[0].product);
-
-  }
-  addToCart(product: Product,quantity :String){
-    this.panierService.add(product,quantity);
-    console.log(this.panierService.getCart())
+    this.getCartItems();
   }
 
+  getCartItems(){
+    this.panier=this.panierService.getCartItems() ;
+  }
+
+  removeFromCart(product: Product) {
+    this.panierService.remove(product);
+    this.getCartItems();
+  }
 
 }

@@ -6,36 +6,42 @@ import { Product } from '../../Models/Product';
   providedIn: 'root'
 })
 export class CartService {
-
   panier:PanierItem[]=[];
 
+  constructor() { }
 
   add(product:Product, quantity:String){
-    let item: PanierItem= new PanierItem(product,Number(quantity));
+    let item: PanierItem= {product: product,quantity: Number(quantity)};
     this.panier.push(item);
     console.log(this.panier[0].product);
-    window.alert('produit ajouté');
+    this.saveCartInLocalStorage();
   }
 
   remove(item:Product){
-    this.panier=this.panier?.filter((panierItem)=> panierItem.product?.id!=item.id)
+    this.panier=this.panier?.filter((panierItem)=> panierItem.product?.id!=item.id);
+    this.saveCartInLocalStorage();
+    //this.getCartFromLocalStorage();
   }
 
-  getCart(): PanierItem[] {
-        console.log("je suis dans get panier");
+  getCartItems(): PanierItem[] {
+        console.log("Retrieving cart items...");
+        this.getCartFromLocalStorage();
         return this.panier;
   }
-
-  getArticle(id:number) {
-        for(var i = 0 ; i<this.panier.length ; i++)
-            if (id == this.panier[i].product?.id)
-          return this.panier[i];
-        return -1;
-  }
-
-    constructor() { }
 
   update($event: any){
     this.panier?.push($event);
   }
+
+  saveCartInLocalStorage(){
+    localStorage.setItem('CART_KEY', JSON.stringify(this.panier));
+  }
+
+  getCartFromLocalStorage(){
+    let savedCartJson = localStorage.getItem('CART_KEY');
+    if (savedCartJson){
+      this.panier = JSON.parse(savedCartJson);
+    }
+  }
+
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import {catchError, Observable, of} from 'rxjs';
 import { Product } from '../../Models/Product';
 import { CartService } from '../cart/cart.service';
 import {HttpClient} from '@angular/common/http'
@@ -9,39 +9,38 @@ import {HttpClient} from '@angular/common/http'
 })
 
 export class ProductService {
-  product0: Product = new Product (1,"Pomme",10,"https://st2.depositphotos.com/7036298/10694/i/600/depositphotos_106948346-stock-photo-ripe-red-apple-with-green.jpg","true");
-  product1: Product = new Product(2,"Banana",8,"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Single.jpg/800px-Banana-Single.jpg","false");
-  product2: Product = new Product(3,"Tomate",4,"https://img.freepik.com/vecteurs-libre/tomates-fraiches_1053-566.jpg","true");
-  product3: Product = new Product(4,"Ananas",15,"https://images.unsplash.com/photo-1550258987-190a2d41a8ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80","false");
-
-  products!: any ;
-
-
+  //baseApiUrl: string = "https://dummyjson.com";
+  baseApiUrl: string = "https://fakestoreapi.com";
 
   constructor(private http: HttpClient) {}
-  getProducts() {
-    this.products=this.http.get<any>('https://dummyjson.com/products');
-    return this.http.get<any>('https://dummyjson.com/products');
+
+  getProducts(): Observable<Product[]> {
+    let fullUrl: string = this.baseApiUrl + "/products";
+    return this.http.get<Product[]>(fullUrl).pipe(
+      catchError(this.handleError<Product[]>("getProducts", []))
+    );
   }
 
 
-  getAll():void{
-    for (var i = 0; i < this.products.length; i++) {
-      console.log(this.products[i]);
-    }
-
+  getProductById(id: number): Observable<Product> {
+    let fullUrl: string = this.baseApiUrl + `/products/${id}`;
+    return this.http.get<Product>(fullUrl).pipe(
+      catchError(this.handleError<Product>("getProductById"))
+    );
   }
 
-  getProductById(id: number):any {
-    for (var i = 0; i < this.products.length; i++) {
-     if(this.products[i].id=== id){
-       console.log("details");
-       return of(this.products[i]);
-     }
-     else{
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
 
-     }
-   }
- }
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      //this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
 
 }

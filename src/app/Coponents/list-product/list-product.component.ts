@@ -12,27 +12,23 @@ import { ProductService } from 'src/app/services/product/product.service';
   styleUrls: ['./list-product.component.css']
 })
 export class ListProductComponent {
-  allProducts: Product[] = [];
-  products: Product[] = this.allProducts;
-  searchText = '';
-  productsJson = new ProductService(this.http);
+  products?: Product[];
 
-  getAllProducts = () => {
-    this.productsJson.getProducts().subscribe((data) => {
-      this.allProducts = data.products;
-      this.products = this.allProducts;
-      console.log(this.products);
+  constructor(private productService: ProductService) {}
 
-
-    });
-  };
   ngOnInit() {
     this.getAllProducts();
   }
 
-  constructor(
-    /* private cartService: CartService, */ private http: HttpClient
-  ) {}
+  getAllProducts() {
+    this.productService.getProducts().subscribe(
+      products => this.products=products
+    );
+    console.log(this.products);
+  };
+
+
+
 
 
 

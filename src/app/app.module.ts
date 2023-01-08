@@ -18,6 +18,7 @@ import { RegisterComponent } from './Coponents/register/register.component';
 import { RegisterService } from './services/register/register.service';
 import { LoginService } from './services/login/login.service';
 import { HomePageComponent } from './Coponents/home-page/home-page.component';
+import { FooterComponent } from './Coponents/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HomePageComponent } from './Coponents/home-page/home-page.component';
     DetailProductComponent,
     LoginComponent,
     RegisterComponent,
-    HomePageComponent
+    HomePageComponent,
+    FooterComponent
   ],
   imports: [
     HttpClientModule,

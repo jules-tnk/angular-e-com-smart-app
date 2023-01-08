@@ -1,18 +1,16 @@
-<div clas="shopping-cart">
-<div class="box" routerLink="./{{panierItem?.product?.id}}">
-    <i class="fas fa-trash"></i>
-    <h5 >{{panierItem?.product?.title}}</h5>
-    <img src="{{panierItem?.product?.thumbnail}}" class="card-img-top" width="200px" height="200px" >
-    <p>{{panierItem?.product?.description}}</p>
-    <div class="content">
-        <span class="price">{{panierItem?.product?.price}}Dhs</span>
-<span class="quantity">{{panierItem?.qte}}</span>
-    
-    </div>
-    <button    type="button" (click)="retirer()">Move from Cart </button>
-    <!--<button  [ngStyle]="{'background-color': product?.disponibilite === true ? 'Green' : 'Red'}"  type="button" (click)="onSelect()">Add to cart </button>-->
-    <a routerLink="/Login" class="btn">checkout</a>
-</div>   
-</div>
-
-     
+<tr *ngIf="panierItem">
+  <td>
+    <button routerLink="/detail/{{panierItem.product.id}}">
+      <img src="{{panierItem.product.image}}" class="avatar" alt="Avatar">
+      <p>{{panierItem.product.title}}</p>
+    </button>
+  </td>
+  <td>MAD{{panierItem.product.price}}</td>
+  <td>{{panierItem.quantity}}</td>
+  <td>
+    <button class="btn btn-danger" title="Delete" data-toggle="tooltip"
+            (click)="removeFromCart(panierItem.product)">
+      Remove
+    </button>
+  </td>
+</tr>

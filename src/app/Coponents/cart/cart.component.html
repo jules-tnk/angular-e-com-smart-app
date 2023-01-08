@@ -1,83 +1,48 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Responsive Grocery Website Design Tutorial</title>
-
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-
-    <!-- font awesome cdn link  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  
-
-</head>
-<body>
-    
-<!-- header section starts  -->
-
-
-
-
-
-
-<section class="home" id="home">
-
-    <div class="content">
-        <h3>Modern and <span>current</span> products for your</h3>
-        <p>our webSite propose nice products into your service!Shop it now.</p>
+<div class="container-xl" style="margin-top: 100px">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-5">
+            <h2>Your <b>cart</b></h2>
+          </div>
+          <div class="col-sm-7">
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Product</th>
+          <th>Unit price</th>
+          <th>Quantity</th>
+          <th>Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let panierItem of panier; let i = index">
+          <td>{{i+1}}</td>
+          <td>
+            <button routerLink="/detail/{{panierItem.product.id}}">
+              <img src="{{panierItem.product.image}}" class="img-fluid" width="100px" height="100px" alt="img">
+              <p>{{panierItem.product.title}}</p>
+            </button>
+          </td>
+          <td>MAD {{panierItem.product.price}}</td>
+          <td>{{panierItem.quantity}}</td>
+          <td>
+            <button class="btn btn-danger" title="Delete" data-toggle="tooltip"
+                    (click)="removeFromCart(panierItem.product)">
+              Remove
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
-
-</section>
-<!-- home section ends -->
-
-<!-- features section starts  -->
-<section class="features" id ="features">
-    <h1 class="heading"> your <span>Commands</span> </h1>
-
-<div class="box-container">
-    <div class="box" *ngFor="let panierItem of panier">
-        <app-panier-item [panierItem]="panierItem" ></app-panier-item>
-    </div>
-    
+  </div>
 </div>
-</section>
+<app-footer></app-footer>
 
-
-
-<!-- footer section starts  -->
-
-<section class="footer">
-
-    <div class="box-container">
-
-        <div class="box">
-            <h3> groco <i class="fas fa-shopping-basket"></i> </h3>
-            <p>Notre siteWeb propose une variété de produits !Beneficiez-en</p>  
-        </div>
-        <div class="box">
-            <h3>newsletter</h3>
-            <p>subscribe for latest updates</p>
-            <input type="email" placeholder="your email" class="email">
-            <input type="submit" value="subscribe" class="btn">
-            
-        </div>
-
-    </div>
-
-
-</section>
-
-<!-- footer section ends -->
-
-
-<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-
-<!-- custom js file link  -->
-<script src="js/script.js"></script>
-
-</body>
-</html>
 

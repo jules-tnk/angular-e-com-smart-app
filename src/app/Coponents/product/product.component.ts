@@ -22,25 +22,18 @@ export class ProductComponent {
 
 
 
-  addTocart(quantity:String)
-  {
-
+  addTocart(quantity:String) {
     //this.productSelected.emit(this.product);
-
       this.panierService.add(this.product,quantity);
-
       console.log("ajouté");
-
-
-
 
   }
   viewDetails(product:Product){
     console.log(product);
-
   }
+
   showForm(){
-    this.showFormFlag=true;
+    this.showFormFlag=!this.showFormFlag;
   }
 
 

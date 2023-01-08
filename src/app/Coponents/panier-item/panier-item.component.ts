@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PanierItem } from 'src/app/Models/PanierItem';
 import { CartService } from 'src/app/services/cart/cart.service';
+import {Product} from "../../Models/Product";
 
 @Component({
   selector: 'app-panier-item',
@@ -26,6 +27,7 @@ export class PanierItemComponent {
   }
 
 
+  removeFromCart(product: Product) {
 
-
+  }
 }
