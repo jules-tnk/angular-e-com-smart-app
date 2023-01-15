@@ -1,7 +1,7 @@
 <tr *ngIf="panierItem">
   <td>
     <button routerLink="/detail/{{panierItem.product.id}}">
-      <img src="{{panierItem.product.image}}" class="avatar" alt="Avatar">
+      <img src="{{panierItem.product.thumbnail}}" class="avatar" alt="Avatar">
       <p>{{panierItem.product.title}}</p>
     </button>
   </td>

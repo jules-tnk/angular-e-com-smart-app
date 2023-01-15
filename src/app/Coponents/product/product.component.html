@@ -41,7 +41,7 @@
 
 <div class="card h-100" style="margin-top: 120px" *ngIf="product">
   <!-- Product image-->
-  <img class="card-img-top" width="200px" height="300px" src="{{product.image}}" alt="..."
+  <img class="card-img-top" width="200px" height="300px" src="{{product.thumbnail}}" alt="..."
        routerLink="/detail/{{product.id}}"/>
   <!-- Product details-->
   <div class="card-body p-4">
@@ -76,7 +76,7 @@
       <div class="form-group">
         <button
           type="submit"
-          (click)="addTocart(quantityInput.value)"
+          (click)="addToCart(quantityInput.value)"
           style="margin: 5%; margin-left: auto"
           class="btn btn-outline-dark">
           Submit

@@ -1,12 +1,14 @@
-<div class="container" style="margin-top: 100px">
+<div class="container" style="margin-top: 100px" *ngIf="command">
   <div class="table-responsive">
     <div class="table-wrapper">
       <div class="table-title">
         <div class="row">
           <div class="col-sm-5">
-            <h2>Your <b>cart</b></h2>
+            <h2>Command {{command.id}}</h2>
           </div>
+          <div class="w-100"></div>
           <div class="col-sm-7">
+            <h3>{{command.date | date:'yyyy-MM-dd HH:mm'}}</h3>
           </div>
         </div>
       </div>
@@ -18,45 +20,35 @@
           <th>Product</th>
           <th>Unit price</th>
           <th>Quantity</th>
-          <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let panierItem of panier; let i = index">
+        <tr *ngFor="let productCommand of command.productCommands; let i = index">
           <td>{{i + 1}}</td>
           <td>
-            <img routerLink="/detail/{{panierItem.product.id}}"
-                 src="{{panierItem.product.thumbnail}}" class="img-fluid rounded-circle"
+            <img routerLink="/detail/{{productCommand.product.id}}"
+                 src="{{productCommand.product.thumbnail}}" class="img-fluid rounded-circle"
                  width="100px"
                  height="100px"
                  alt="img"
             >
           </td>
           <td>
-            {{panierItem.product.title}}
+            {{productCommand.product.title}}
           </td>
-          <td>${{panierItem.product.price}}</td>
-          <td>{{panierItem.quantity}}</td>
-          <td>
-            <button class="btn btn-danger" title="Delete" data-toggle="tooltip"
-                    (click)="removeFromCart(panierItem.product)">
-              Remove
-            </button>
-          </td>
+          <td>${{productCommand.product.price}}</td>
+          <td>{{productCommand.quantity}}</td>
+          <td></td>
         </tr>
         <tr>
           <td><b>Total:</b></td>
           <td></td>
           <td></td>
-          <td><b>${{getTotalPrice()}}</b></td>
+          <td><b>${{command.totalPrice}}</b></td>
           <td></td>
-          <td><button class="btn btn-primary" (click)="validateCommand()">Validate</button></td>
         </tr>
         </tbody>
       </table>
     </div>
   </div>
 </div>
-<app-footer></app-footer>
-
-

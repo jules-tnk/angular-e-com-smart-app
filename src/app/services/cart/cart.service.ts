@@ -1,20 +1,31 @@
 import { Injectable } from '@angular/core';
-import { PanierItem} from '../../Models/PanierItem';
+import { ProductCommand} from '../../Models/ProductCommand';
 import { Product } from '../../Models/Product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  panier:PanierItem[]=[];
+  panier:ProductCommand[]=[];
 
   constructor() { }
 
   add(product:Product, quantity:String){
-    let item: PanierItem= {product: product,quantity: Number(quantity)};
+    if (this.isProductInCart(product)){
+      return
+    }
+    let item: ProductCommand= {product: product,quantity: Number(quantity)};
     this.panier.push(item);
-    console.log(this.panier[0].product);
     this.saveCartInLocalStorage();
+  }
+
+  isProductInCart(product: Product): boolean{
+    for (let panierItem of this.panier) {
+      if (panierItem.product.id == product.id){
+        return true;
+      }
+    }
+    return false;
   }
 
   remove(item:Product){
@@ -23,14 +34,22 @@ export class CartService {
     //this.getCartFromLocalStorage();
   }
 
-  getCartItems(): PanierItem[] {
-        console.log("Retrieving cart items...");
+  getCartItems(): ProductCommand[] {
         this.getCartFromLocalStorage();
         return this.panier;
   }
 
-  update($event: any){
-    this.panier?.push($event);
+  getTotalPrice(): number{
+    let totalPrice: number = 0;
+    for (const command of this.panier) {
+      totalPrice += command.product.price * command.quantity;
+    }
+    return totalPrice;
+  }
+
+  clearCart(){
+    this.panier = [];
+    this.saveCartInLocalStorage();
   }
 
   saveCartInLocalStorage(){

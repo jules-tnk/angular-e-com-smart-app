@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PanierItem} from 'src/app/Models/PanierItem';
 import { Product } from 'src/app/Models/Product';
 import { CartService } from 'src/app/services/cart/cart.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-product',
@@ -17,26 +17,17 @@ export class ProductComponent {
   @Output()
   productSelected=new EventEmitter<Product>();
 
-  constructor(
-    private panierService:CartService){}
+  constructor(private panierService:CartService,
+              private router: Router){}
 
 
-
-  addTocart(quantity:String) {
-    //this.productSelected.emit(this.product);
+  addToCart(quantity:String) {
       this.panierService.add(this.product,quantity);
-      console.log("ajouté");
-
-  }
-  viewDetails(product:Product){
-    console.log(product);
+      this.router.navigate(['/panier']);
   }
 
   showForm(){
     this.showFormFlag=!this.showFormFlag;
   }
-
-
-
 
 }

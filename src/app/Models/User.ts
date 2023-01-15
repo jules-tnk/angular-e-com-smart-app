@@ -1,9 +1,8 @@
-export class User{
-    name!:string;
-    userId!:string;
-    email!:string;
-    phone!:string;
-    password!:string;
-    cpassword!:string;
-    gender!:string;
+export interface User{
+    fullName?: string;
+    userId?: string;
+    email?: string;
+    phoneNumber?:string;
+    password?: string;
+    cpassword?: string;
 }

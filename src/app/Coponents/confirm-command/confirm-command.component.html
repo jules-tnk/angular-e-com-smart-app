@@ -4,7 +4,7 @@
       <div class="table-title">
         <div class="row">
           <div class="col-sm-5">
-            <h2>Your <b>cart</b></h2>
+            <h2>Your <b>command</b></h2>
           </div>
           <div class="col-sm-7">
           </div>
@@ -37,12 +37,7 @@
           </td>
           <td>${{panierItem.product.price}}</td>
           <td>{{panierItem.quantity}}</td>
-          <td>
-            <button class="btn btn-danger" title="Delete" data-toggle="tooltip"
-                    (click)="removeFromCart(panierItem.product)">
-              Remove
-            </button>
-          </td>
+          <td></td>
         </tr>
         <tr>
           <td><b>Total:</b></td>
@@ -57,6 +52,3 @@
     </div>
   </div>
 </div>
-<app-footer></app-footer>
-
-

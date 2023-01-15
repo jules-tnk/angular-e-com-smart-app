@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PanierItem } from 'src/app/Models/PanierItem';
+import { ProductCommand } from 'src/app/Models/ProductCommand';
 import { CartService } from 'src/app/services/cart/cart.service';
 import {Product} from "../../Models/Product";
 
@@ -11,10 +11,10 @@ import {Product} from "../../Models/Product";
 export class PanierItemComponent {
 
   @Input()
-  panierItem ?:PanierItem;
+  panierItem ?:ProductCommand;
 
   @Output()
-  productSelected=new EventEmitter<PanierItem>();
+  productSelected=new EventEmitter<ProductCommand>();
 
   constructor(private panierService:CartService){
 

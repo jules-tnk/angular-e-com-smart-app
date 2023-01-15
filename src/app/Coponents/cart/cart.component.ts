@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { LoginService } from 'src/app/services/login/login.service';
-import { PanierItem } from 'src/app/Models/PanierItem';
+import { ProductCommand } from 'src/app/Models/ProductCommand';
 import { Product } from 'src/app/Models/Product';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductService } from 'src/app/services/product/product.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-cart',
@@ -11,9 +11,10 @@ import { ProductService } from 'src/app/services/product/product.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
-  panier?:PanierItem[];
+  panier:ProductCommand[]= [];
 
-  constructor(private panierService: CartService, private productService:ProductService) {}
+  constructor(private panierService: CartService,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.getCartItems();
@@ -28,4 +29,13 @@ export class CartComponent {
     this.getCartItems();
   }
 
+  getTotalPrice(): number{
+    return this.panierService.getTotalPrice();
+  }
+
+  validateCommand() {
+    if (this.panier.length>0){
+      this.router.navigate(["/confirm"]);
+    }
+  }
 }

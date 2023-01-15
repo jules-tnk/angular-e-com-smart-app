@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PanierItem } from 'src/app/Models/PanierItem';
+import { ProductCommand } from 'src/app/Models/ProductCommand';
 import { Product } from 'src/app/Models/Product';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductService } from 'src/app/services/product/product.service';
@@ -22,17 +22,16 @@ export class ListProductComponent {
 
   getAllProducts() {
     this.productService.getProducts().subscribe(
-      products => this.products=products
+      data => this.products=data.products
     );
     console.log(this.products);
-  };
+  }
 
+  getProductFromKeywordSearch(keyword: string){
+    this.productService.getProductsByKeywordSearch(keyword).subscribe(
+      productApiDto => this.products = productApiDto.products
+    )
 
-
-
-
-
-
-
+  }
 
 }

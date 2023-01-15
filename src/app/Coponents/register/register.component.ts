@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { User } from '../../Models/User';
-import { RegisterService } from '../../services/register/register.service';
 
 @Component({
   selector: 'app-register',
@@ -8,17 +7,15 @@ import { RegisterService } from '../../services/register/register.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  user:User =new User();
+  user: User = {};
 
-  constructor(private registerService: RegisterService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
   userRegister(){
-    console.log(this.user);
-    this.registerService.registerUser(this.user)
-    //.subscribe(data=>{alert("Successfully User is register?")},error=>alert("Sorry User not register"));
+    window.alert(`User to register: \n${JSON.stringify(this.user)}`);
   }
 
 }

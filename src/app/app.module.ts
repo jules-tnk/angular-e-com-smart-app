@@ -11,14 +11,15 @@ import { PanierItemComponent } from './Coponents/panier-item/panier-item.compone
 import { DetailProductComponent } from './Coponents/detail-product/detail-product.component';
 import { ProductService } from './services/product/product.service';
 import { CartService } from './services/cart/cart.service';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './Coponents/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './Coponents/register/register.component';
-import { RegisterService } from './services/register/register.service';
-import { LoginService } from './services/login/login.service';
 import { HomePageComponent } from './Coponents/home-page/home-page.component';
 import { FooterComponent } from './Coponents/footer/footer.component';
+import { ListCommandComponent } from './Coponents/list-command/list-command.component';
+import { ConfirmCommandComponent } from './Coponents/confirm-command/confirm-command.component';
+import { CommandDetailComponent } from './Coponents/command-detail/command-detail.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,10 @@ import { FooterComponent } from './Coponents/footer/footer.component';
     LoginComponent,
     RegisterComponent,
     HomePageComponent,
-    FooterComponent
+    FooterComponent,
+    ListCommandComponent,
+    ConfirmCommandComponent,
+    CommandDetailComponent
   ],
   imports: [
     HttpClientModule,
@@ -42,7 +46,7 @@ import { FooterComponent } from './Coponents/footer/footer.component';
     ReactiveFormsModule
 
   ],
-  providers: [ProductService, CartService,RegisterService,LoginService],
+  providers: [ProductService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
