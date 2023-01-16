@@ -34,6 +34,11 @@ export class CartService {
     //this.getCartFromLocalStorage();
   }
 
+  saveChanges(newCart: ProductCommand[]){
+    this.panier = newCart;
+    this.saveCartInLocalStorage();
+  }
+
   getCartItems(): ProductCommand[] {
         this.getCartFromLocalStorage();
         return this.panier;

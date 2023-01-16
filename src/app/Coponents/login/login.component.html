@@ -4,16 +4,16 @@
   </div>
   <div class="row d-flex justify-content-center">
     <div class="col-sm-5">
-      <form (ngSubmit)="login()">
+      <form (ngSubmit)="login(emailInput.value, passwordInput.value)">
         <!-- Email input -->
         <div class="form-outline mb-4">
-          <input type="email" id="email-input" class="form-control">
+          <input type="email" id="email-input" value="juju@gmail.com" class="form-control" #emailInput disabled>
           <label class="form-label" for="email-input">Email address</label>
         </div>
 
         <!-- Password input -->
         <div class="form-outline mb-4">
-          <input type="password" id="password-input" class="form-control"/>
+          <input type="password" value="sacarina" id="password-input" class="form-control" #passwordInput disabled/>
           <label class="form-label" for="password-input">Password</label>
         </div>
 

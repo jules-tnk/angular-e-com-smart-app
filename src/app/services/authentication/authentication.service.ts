@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Location} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class AuthenticationService {
   DEFAULT_USER_EMAIL = "juju@gmail.com"
   DEFAULT_PASSWORD = "sacarina"
 
-  constructor() {
+  constructor(private location: Location) {
     this.loadUserAuthStatusFromLocalStorage();
   }
 
@@ -28,7 +29,8 @@ export class AuthenticationService {
   login(email: string, password: string) {
     if (email == this.DEFAULT_USER_EMAIL && password == this.DEFAULT_PASSWORD) {
       this.isUserAuthenticated = true;
-      this.saveUserAuthStatusInLocalStorage()
+      this.saveUserAuthStatusInLocalStorage();
+      this.location.back();
     }
     else {
       window.alert("Incorrect credentials")

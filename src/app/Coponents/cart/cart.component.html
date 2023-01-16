@@ -36,7 +36,9 @@
             {{panierItem.product.title}}
           </td>
           <td>${{panierItem.product.price}}</td>
-          <td>{{panierItem.quantity}}</td>
+          <td><input type="number" class="w-25 form-control"
+                     [ngModel]="panierItem.quantity"
+                     (ngModelChange)="panierItem.quantity = $event; saveModificationsToCart()"></td>
           <td>
             <button class="btn btn-danger" title="Delete" data-toggle="tooltip"
                     (click)="removeFromCart(panierItem.product)">

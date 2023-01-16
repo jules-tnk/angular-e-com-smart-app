@@ -28,4 +28,8 @@ export class NavBarComponent {
     this.authService.logout();
   }
 
+  clearLocalStorage() {
+    // for development only
+    localStorage.clear();
+  }
 }

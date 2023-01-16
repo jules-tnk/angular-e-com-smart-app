@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { ProductCommand } from 'src/app/Models/ProductCommand';
 import { Product } from 'src/app/Models/Product';
 import { CartService } from 'src/app/services/cart/cart.service';
@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
+  @Input()
   panier:ProductCommand[]= [];
 
   constructor(private panierService: CartService,
@@ -31,6 +32,10 @@ export class CartComponent {
 
   getTotalPrice(): number{
     return this.panierService.getTotalPrice();
+  }
+
+  saveModificationsToCart(){
+    this.panierService.saveChanges(this.panier);
   }
 
   validateCommand() {

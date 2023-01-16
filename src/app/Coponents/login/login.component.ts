@@ -8,20 +8,15 @@ import {Location} from "@angular/common";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  userEmail: string = "juju@gmail.com";
-  userPassword: string = "sacarina";
 
-  constructor(private authService: AuthenticationService,
-              private location: Location) {
+  constructor(private authService: AuthenticationService) {
   }
 
   ngOnInit() {
   }
 
-  login() {
-    window.alert(`Username: ${this.userEmail}\nPassword: ${this.userPassword}`)
-    this.authService.login(this.userEmail, this.userPassword);
-    this.location.back();
+  login(email: string, password: string) {
+    this.authService.login(email, password);
   }
 
 }
